@@ -25,7 +25,7 @@ Welcome to the Post Web App, a dynamic web application that allows users to crea
 
 1. **Clone the repository:**
    ```bash
-   git clone https://github.com/yourusername/post-webapp.git
+   git clone https://github.com/anilrasal/posts-app-with-spring-boot-thymeleaf.git
    cd post-webapp
    ```
 2. **Configure the database:**
