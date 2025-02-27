@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<header>
+	<div class="top-header-area" id="sticker">
+		<div class="container">
+			<div class="row">
+				<div class="col-lg-12 col-sm-12 text-center">
+					<div class="main-menu-wrap">
+						<!-- logo -->
+						<div class="site-logo">
+							<a href="/">
+								<!--<img src="assets/img/logo.png" alt="">-->
+							</a>
+						</div>
+						<!-- logo -->
+
+						<!-- menu start -->
+						<nav class="main-menu">
+							<ul>
+								<li class="current-list-item"><a th:href="@{/}">Home</a></li>
+
+								<li sec:authorize="!isAuthenticated()"><a th:href="@{/register}">Register</a></li>
+
+								<li sec:authorize="isAuthenticated()"><a th:href="@{/profile}">Profile</a></li>
+
+								<li sec:authorize="isAuthenticated()"><a th:href="@{/post/add}">Add post</a></li>
+
+								<li sec:authorize="hasRole('ROLE_ADMIN')"><a th:href="@{/admin}">Admin Panel</a></li>
+
+								<li sec:authorize="hasAuthority('ACCESS_ADMIN_PANEL')"><a th:href="@{/admin}">Admin
+										Panel</a></li>
+
+								<li sec:authorize="hasAnyRole('ROLE_ADMIN','ROLE_EDITOR')"><a
+										th:href="@{/editor}">Editor Panel</a></li>
+
+								<li><a href="#About">About</a></li>
+
+								<li sec:authorize="!isAuthenticated()"><a th:href="@{/login}">Login</a></li>
+
+								<li sec:authorize="isAuthenticated()"><a th:href="@{/logout}">Logout</a></li>
+							</ul>
+						</nav>
+						<a class="mobile-show search-bar-icon" href="#"><i class="fas fa-search"></i></a>
+						<div class="mobile-menu"></div>
+						<!-- menu end -->
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</header>
+
+</html>

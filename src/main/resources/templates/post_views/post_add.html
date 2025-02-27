@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="www.thymeleaf.org">
+
+<head th:replace="/fragments/head :: head"></head>
+
+<body>
+
+	<!-- header -->
+	<header th:replace="/fragments/header::header"> </header>
+	<!-- end header -->
+
+
+	<!-- breadcrumb-section -->
+	<div class="breadcrumb-section breadcrumb-bg">
+		<div class="container">
+			<div class="row">
+				<div class="col-lg-8 offset-lg-2 text-center">
+					<div class="breadcrumb-text">
+						<p></p>
+						<h1>Add Post</h1>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<!-- end breadcrumb section -->
+
+	<!-- check out section -->
+	<div class="checkout-section mt-70 mb-150">
+		<div class="container">
+			<div class="row">
+				<div class="col-lg-8">
+					<div class="checkout-accordion-wrap">
+						<div class="accordion" id="accordionExample">
+							<div class="card single-accordion">
+								<div class="card-header" id="headingOne">
+								</div>
+								<div id="collapseOne" class="collapse show" aria-labelledby="headingOne"
+									data-parent="#accordionExample">
+									<div class="card-body">
+										<div class="billing-address-form">
+											<form action="#" th:action="@{/post/add}" th:object="${post}" method="post">
+												<input th:field="*{account}" type="hidden" name="account" id="account">
+												<p><input th:field="*{title}" id="title" type="text" placeholder="title"
+														name="title"></p>
+												<p th:if="${#fields.hasErrors('title')}" th:errors="*{title}"
+													class="alert alert-danger" role="alert">
+													title error</p>
+												<p><textarea th:field="*{body}" id="editor" name="body"></textarea></p>
+												<p th:if="${#fields.hasErrors('body')}" th:errors="*{body}"
+													class="alert alert-danger" role="alert">
+													body error</p>
+												<input type="submit" class="boxed-btn" value="Add post">
+											</form>
+										</div>
+									</div>
+								</div>
+							</div>
+
+						</div>
+
+					</div>
+				</div>
+
+
+			</div>
+		</div>
+	</div>
+	<!-- end check out section -->
+
+
+	<!-- footer -->
+	<footer th:replace="/fragments/footer::footer"></footer>
+</body>
+
+</html>

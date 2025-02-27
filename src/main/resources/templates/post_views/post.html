@@ -1,0 +1,70 @@
+<html lang="en" xmlns:th="www.thymeleaf.org">
+
+<head th:replace="/fragments/head :: head"></head>
+
+<body>
+    <!--PreLoader
+        <div class="loader">
+            <div class="loader-inner">
+                <div class="circle"></div>
+            </div>
+        </div>
+    PreLoader Ends-->
+    <header th:replace="/fragments/header :: header"></header>
+
+    <div class="hero-area hero-bg">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-9 offset-lg-2 text-center">
+                    <div class="hero-text">
+                        <div class="hero-text-tablecell">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="product-section" style="margin-top: 70px;">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-8 offset-lg-2 text-center">
+                    <div class="section-title">
+                        <h1 th:utext="${post.title}">Title</h1>
+                        <p th:utext="${post.body}" class="subtitle">Post body</p>
+                        <div>
+                            <p th:utext="'Created on: '+${#temporals.format(post.createdAt,'yyyy-MM-dd HH:mm')} + 
+                                ' | Updated on: ' + ${#temporals.format(post.updatedAt, 'yyyy-MM-dd HH:mm')}"></p>
+                        </div>
+                        <div sec:authorize="isAuthenticated()" th:if="${isOwner}">
+                            <a th:href="@{'/post/'+ ${post.id}+'/edit'}" class="btn btn-secondary btn-lg active"
+                                role="button" aria-pressed="true">Edit</a>|
+                            <a th:href="@{'/post/' + ${post.id} +'/delete'}" class="btn btn-danger btn-lg active"
+                                role="button" aria-pressed="true">Delete</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+    <div class="product-section mt-150 mb-150">
+        <div class="container">
+
+            <div class="row">
+                <div class="col-lg-12 col-md-6 text-center">
+                    <div class="single-product-item" th:each="post: ${posts}">
+                        <h3><a th:href="@{'/posts/'+ ${post.id}}" th:utext="${post.title}"></a></h3>
+                        <p class="product-price"><span th:utext="${post.body}"></span></p>
+                        <p><span th:utext="'Author: ' + ${post.account.firstName} +'| Created At: ' + ${#temporals.format(post.createdAt,'yyyy-MM-dd HH:mm')}  + 
+							' ! Updated on: ' + ${#temporals.format(post.updatedAt, 'yyyy-MM-dd HH:mm')}"></span></p>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+    <footer th:replace="/fragments/footer :: footer"></footer>
+</body>
+
+</html>
